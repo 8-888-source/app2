@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}
+премиум
+{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-card">
+        {% if status == "success" %}
+            <h2>Платёж принят</h2>
+            <p>{{ message }}</p>
+            {% if email %}
+                <p>Аккаунт: {{ email }}</p>
+            {% endif %}
+            {% if activated %}
+                <p>Премиум-доступ активирован.</p>
+            {% endif %}
+            <a href="/">Вернуться на главную</a>
+        {% elif status == "cancel" %}
+            <h2>Оплата отменена</h2>
+            <p>{{ message }}</p>
+            <a href="{{ url_for('premium') }}">Попробовать снова</a>
+        {% else %}
+            <h2>Премиум-доступ</h2>
+            <p>Разовый платёж для закрытого раздела.</p>
+            <p>Цена: {{ price_text }}</p>
+
+            {% if message %}
+                <p>{{ message }}</p>
+            {% endif %}
+
+            <form method="POST">
+                <input type="email" name="email" placeholder="Email аккаунта" value="{{ email }}">
+                <button type="submit">Перейти к оплате</button>
+            </form>
+
+            <a href="/category">Назад к категориям</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

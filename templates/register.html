@@ -1,0 +1,28 @@
+﻿{% extends "base.html" %}
+
+{% block title %}
+регистрация
+{% endblock %}
+
+{% block content %}
+
+<div class="auth-container">
+
+    <div class="auth-card">
+        <form method="POST">
+            <h2>Создать аккаунт</h2>
+            <p>Добро пожаловать в MAKSHUB</p>
+
+            <input type="text" name="username" placeholder="Имя">
+            <input type="email" name="email" placeholder="Email">
+            <input type="password" name="password" placeholder="Пароль">
+
+            <button>Зарегистрироваться</button>
+
+            <a href="/login">Уже есть аккаунт?</a>
+        </form>
+    </div>
+
+</div>
+
+{% endblock %}

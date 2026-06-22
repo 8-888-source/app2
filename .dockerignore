@@ -1,0 +1,11 @@
+.git
+.vs
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.env
+.env.*
+instance/*.db
+work
+outputs

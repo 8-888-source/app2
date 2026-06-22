@@ -1,0 +1,261 @@
+﻿body {
+    margin: 0;
+    background: #050816;
+    font-family: Arial, sans-serif;
+}
+
+/* 💎 стеклянная шапка */
+.head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 40px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    color: white;
+    position: relative;
+    overflow: hidden;
+    top: 0;
+    z-index: 1000;
+}
+
+/* ⚡ логотип с свечением */
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: #7dd3fc;
+    text-shadow: 0 0 10px #38bdf8, 0 0 20px #0ea5e9;
+}
+
+/* 🌐 меню */
+.nav {
+    display: flex;
+    gap: 25px;
+}
+
+    .nav a {
+        color: rgba(255,255,255,0.7);
+        text-decoration: none;
+        position: relative;
+        transition: 0.3s;
+    }
+
+        .nav a:hover {
+            color: white;
+            text-shadow: 0 0 10px #38bdf8;
+        }
+
+/* ✨ кнопки */
+.auth {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    padding: 8px 14px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: 0.3s;
+}
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 15px rgba(56,189,248,0.4);
+    }
+
+.btn-primary {
+    background: linear-gradient(135deg, #38bdf8, #6366f1);
+    border: none;
+}
+
+/* 🌌 лёгкая анимация свечения */
+.head::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(56,189,248,0.15), transparent 60%);
+    animation: glowMove 6s infinite linear;
+    z-index: -1;
+    pointer-events: none;
+}
+
+
+.text {
+    color: white;
+}
+
+
+
+@keyframes glowMove {
+    0% {
+        transform: rotate(0deg);
+    }
+    
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.auth-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-card {
+    width: 320px;
+    padding: 30px;
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    backdrop-filter: blur(15px);
+    text-align: center;
+    box-shadow: 0 0 40px rgba(56,189,248,0.1);
+}
+
+    .auth-card h2 {
+        margin-bottom: 5px;
+        color: white;
+    }
+
+    .auth-card p {
+        color: white;
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+
+    .auth-card input {
+        width: 100%;
+        padding: 12px;
+        margin: 8px 0;
+        border-radius: 10px;
+        border: 1px solid rgba(255,255,255,0.1);
+        background: rgba(0,0,0,0.3);
+        color: white;
+        outline: none;
+        transition: 0.3s;
+    }
+
+        .auth-card input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(56,189,248,0.3);
+        }
+
+    .auth-card button {
+        width: 100%;
+        padding: 12px;
+        margin-top: 10px;
+        border: none;
+        border-radius: 10px;
+        background: linear-gradient(135deg, var(--primary), var(--primary2));
+        color: white;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+        .auth-card button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(56,189,248,0.4);
+        }
+
+    .auth-card a {
+        display: block;
+        margin-top: 12px;
+        font-size: 13px;
+        color: gray;
+        text-decoration: none;
+    }
+
+        .auth-card a:hover {
+            color: white;
+        }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card);
+    border-radius: 12px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background: rgba(255,255,255,0.05);
+    color: var(--muted);
+}
+
+tr {
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+    tr:hover {
+        background: rgba(56,189,248,0.05);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 25px;
+    padding: 40px;
+}
+
+.card {
+    text-decoration: none;
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 18px;
+    overflow: hidden;
+    backdrop-filter: blur(15px);
+    transition: .3s;
+}
+
+    .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 0 30px rgba(56,189,248,.25);
+    }
+
+    .card img {
+        width: 100%;
+        height: 170px;
+        object-fit: cover;
+        display: block;
+    }
+
+    .card span {
+        display: block;
+        padding: 18px;
+        text-align: center;
+        color: white;
+        font-size: 18px;
+        font-weight: 600;
+    }

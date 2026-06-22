@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>{% block title %} главная {% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="head">
+        <div class="logo">⚡ MAKSHUB ⚡</div>
+
+        <nav class="nav">
+            <a href="/">Главная</a>
+            <a href="/notes">Коментарии</a>
+            <a href="/category">Категории</a>
+            <a href="/videos">Все видео</a>
+            <a href="/premium">Премиум</a>
+        </nav>
+
+        <div class="auth">
+            <a href="/login" class="btn">Вход</a>
+            <a href="/register" class="btn btn-primary">Регистрация</a>
+        </div>
+    </header>
+    {% block content %}
+
+    {% endblock %}
+</body>
+</html>
