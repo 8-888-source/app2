@@ -30,6 +30,8 @@ def _database_uri():
 
     if uri.startswith("postgres://"):
         uri = uri.replace("postgres://", "postgresql://", 1)
+    elif uri.startswith("sqlite:///instance/"):
+        uri = "sqlite:///" + uri[len("sqlite:///instance/"):]
 
     return uri
 
@@ -57,3 +59,4 @@ class Config:
         "PREMIUM_PRODUCT_DESCRIPTION",
         "Пожизненный доступ к закрытому разделу",
     )
+    GOOGLE_SITE_VERIFICATION = os.getenv("GOOGLE_SITE_VERIFICATION", "").strip()

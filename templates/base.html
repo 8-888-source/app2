@@ -4,6 +4,9 @@
 <head>
     <meta charset="utf-8" />
     <title>{% block title %} главная {% endblock %}</title>
+    {% if config.GOOGLE_SITE_VERIFICATION %}
+    <meta name="google-site-verification" content="{{ config.GOOGLE_SITE_VERIFICATION }}">
+    {% endif %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>

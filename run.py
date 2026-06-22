@@ -1,11 +1,12 @@
 import json
 import os
 import sqlite3
+from datetime import date
 import urllib.error
 import urllib.parse
 import urllib.request
 
-from flask import Flask, redirect, render_template, request, session, url_for
+from flask import Flask, Response, redirect, render_template, request, session, url_for
 from sqlalchemy import func
 from werkzeug.security import check_password_hash, generate_password_hash
 from werkzeug.middleware.proxy_fix import ProxyFix
@@ -121,7 +122,61 @@ def _activate_premium(email):
     user.premium = True
     db.session.commit()
     return True
-    
+
+
+@app.route("/robots.txt")
+def robots_txt():
+    lines = [
+        "User-agent: *",
+        "Allow: /",
+        "Disallow: /login",
+        "Disallow: /register",
+        "Disallow: /notes",
+        "Disallow: /profile",
+        "Disallow: /pasword",
+        f"Sitemap: {url_for('sitemap_xml', _external=True)}",
+    ]
+
+    return Response("\n".join(lines) + "\n", mimetype="text/plain")
+
+
+@app.route("/sitemap.xml")
+def sitemap_xml():
+    today = date.today().isoformat()
+    pages = [
+        {
+            "loc": url_for("main", _external=True),
+            "lastmod": today,
+            "changefreq": "daily",
+            "priority": "1.0",
+        },
+        {
+            "loc": url_for("category", _external=True),
+            "lastmod": today,
+            "changefreq": "weekly",
+            "priority": "0.8",
+        },
+        {
+            "loc": url_for("videos", _external=True),
+            "lastmod": today,
+            "changefreq": "weekly",
+            "priority": "0.8",
+        },
+        {
+            "loc": url_for("video", _external=True),
+            "lastmod": today,
+            "changefreq": "weekly",
+            "priority": "0.7",
+        },
+        {
+            "loc": url_for("premium", _external=True),
+            "lastmod": today,
+            "changefreq": "monthly",
+            "priority": "0.6",
+        },
+    ]
+
+    return Response(render_template("sitemap.xml", pages=pages), mimetype="application/xml")
 
 with app.app_context():
     db.create_all()
